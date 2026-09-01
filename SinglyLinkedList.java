@@ -114,4 +114,5 @@ public class SinglyLinkedList<E> {
 
         head = prev;
     }
+
 }
