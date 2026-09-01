@@ -65,16 +65,53 @@ public class SinglyLinkedList<E> {
         return answer;
     }
 
-    // Write your codes below
     public String toString(){
-     
+        StringBuilder sb = new StringBuilder("");
+        Node curr = head;
+        while (curr != null){
+            sb.append(curr.getElement());
+            curr = curr.getNext();
+        }
+        return sb.toString();
     }
 
     public E removeLast(){
-      
+        if (isEmpty()){
+            return null;
+        }
+        E last = tail.getElement();
+        if (head == tail){
+            head = null;
+            tail = null;
+        } else {
+            Node<E> walker = head;
+            while (walker.getNext() != tail){
+                walker = walker.getNext();
+            }
+            walker.setNext(null);
+            tail = walker;
+        }
+        size -= 1;
+        return last;
     }
 
     public void reverse(){       
-                 
+        if (head == null || head.getNext() == null){
+            return;
+        }
+
+        Node prev = null;
+        Node curr = head;
+        Node next = null;
+
+        tail = head;
+        while (curr != null){
+            next = curr.getNext();
+            curr.setNext(prev);
+            prev = curr;
+            curr = next;
+        }
+
+        head = prev;
     }
 }
